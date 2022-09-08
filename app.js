@@ -10,6 +10,8 @@ const HandleError = require('./handel')
 const AsynHandel = require('./promis')
 const FlowControl = require('./flow')
 const TestEventLoop = require('./eloop')
+const TestNextTick = require('./ntick')
+const HandelEmitter = require('./emitter')
 
 
 const hostname = '127.0.0.1'
@@ -32,8 +34,14 @@ server.listen(port, hostname, () => {
     console.log(Title.title);
     console.log(`Server running at http://${hostname}:${port}`);
 
+    HandelEmitter.eventEmitter.on('start', () => {
+        console.log('emit start ...')
+    });
+    HandelEmitter.doEmitter(HandelEmitter.eventEmitter);
+
     // HandleError();
     // AsynHandel(true)
-    FlowControl();
-    TestEventLoop();
+    // FlowControl();
+    // TestEventLoop();
+    // TestNextTick();
 })
