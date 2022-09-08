@@ -51,14 +51,41 @@ const FlowControl = () => {
     // const song2 = getSong2();
     // singSong(song2);
 
-    const function1 = function () { };
-    const function2 = function () { };
-    const function3 = function () { };
-    const arg1 = '';
-    const arg2 = '';
-    const arg3 = '';
-    const operators = [{ func: function1, args: arg1 }, { func: function2, args: arg2 }, { func: function1, args: arg1 }];
+    const function1 = function (arg, callback) {
+        callback(arg);
+    };
+    const function2 = function (arg, callback) {
+        callback(arg);
+    };
+    const function3 = function (arg, callback) {
+        callback(arg);
+    };
 
+    const arg1 = 'arg 1';
+    const arg2 = 'arg 2';
+    const arg3 = 'arg 3';
+    const operations = [
+        { func: function1, args: arg1 },
+        { func: function2, args: arg2 },
+        { func: function3, args: arg3 }
+    ];
+
+    function executeFunctionWithArgs(operation, callback) {
+        const { args, func } = operation;
+        func(args, callback);
+    }
+
+    function serialProcedure(operation) {
+        if (!operation) {
+            return;
+        }
+        executeFunctionWithArgs(operation, function (result) {
+            console.log(`${result} are recv `)
+            serialProcedure(operations.shift());
+        });
+    }
+
+    serialProcedure(operations.shift());
 
 };
 
