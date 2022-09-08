@@ -9,6 +9,7 @@ const { Title } = require('./title')
 const HandleError = require('./handel')
 const AsynHandel = require('./promis')
 const FlowControl = require('./flow')
+const TestEventLoop = require('./eloop')
 
 
 const hostname = '127.0.0.1'
@@ -34,4 +35,5 @@ server.listen(port, hostname, () => {
     // HandleError();
     // AsynHandel(true)
     FlowControl();
+    TestEventLoop();
 })
