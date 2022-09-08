@@ -6,8 +6,9 @@ const item = require('./email')
 const { Mail } = item
 // [3]
 const { Title } = require('./title')
-let HandleError = require('./handel')
-let AsynHandel = require('./promis')
+const HandleError = require('./handel')
+const AsynHandel = require('./promis')
+const FlowControl = require('./flow')
 
 
 const hostname = '127.0.0.1'
@@ -25,11 +26,12 @@ server.listen(port, hostname, () => {
         process.exit(1);
     });
 
-    // HandleError();
-    AsynHandel(true)
-
     console.log(uos.name);
     console.log(Mail.email);
     console.log(Title.title);
     console.log(`Server running at http://${hostname}:${port}`);
+
+    // HandleError();
+    // AsynHandel(true)
+    FlowControl();
 })

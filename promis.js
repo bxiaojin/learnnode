@@ -1,5 +1,3 @@
-const { builtinModules } = require("module");
-
 const AsynHandel = (statu = true) => {
     let prms = new Promise(function (resolve, reject) {
         console.log('promise pending...');
@@ -28,8 +26,6 @@ const AsynHandel = (statu = true) => {
         console.log(reject);
     });
 };
-
-
 
 module.exports = AsynHandel;
 
